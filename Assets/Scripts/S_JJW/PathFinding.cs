@@ -150,6 +150,7 @@ public class PathFinding : MonoBehaviour
                 //end에 hitPos에 대응하는 NodeIndex를 대입
             }
 
+            if(end.walkable == true)
             FindPath();
             //start와 목적지가 정해졌으면 FindPath함수 실행
         }
@@ -164,11 +165,15 @@ public class PathFinding : MonoBehaviour
 
     public void FindPath()
     {
-        Debug.Log("2");
+        
         //길찾기 함수
         finding = true;
 
         openSet.Add(start); //start를 첫 열린 목록에 추가
+
+    
+
+        //================================================================================
 
 
         if (openSet.Count > 0)
@@ -196,6 +201,10 @@ public class PathFinding : MonoBehaviour
                     success = true;
                     break;
                 }
+
+                //int X = Grid.gridinstance.TrueNodeCount();
+
+               // Debug.Log(X);
 
 
 
@@ -228,13 +237,17 @@ public class PathFinding : MonoBehaviour
                     }
                 }
             }
-        }
-
-
-
         targetIndex = 0;
         StopCoroutine("MoveUnit");
         StartCoroutine("MoveUnit");
+        }
+
+        //길을 찾지 못했을 때 예외처리 필요
+
+        //현재 바다는 이미 walkable이 false이기 때문에 선택되지 않음
+        //추후 예외처리가 되면 바꿀 예정
+
+
     }
 
     float closeDistance = 1.0f;

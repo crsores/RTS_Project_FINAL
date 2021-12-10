@@ -27,15 +27,15 @@ public class Grid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int x = 0; x < (int)width; x++)
-        {
-            Debug.DrawLine(new Vector3(x * cellsize, 0, 0), new Vector3(x * cellsize, 0, width * cellsize), Color.red);
-        }
+        //for (int x = 0; x < (int)width; x++)
+        //{
+        //    Debug.DrawLine(new Vector3(x * cellsize, 0, 0), new Vector3(x * cellsize, 0, width * cellsize), Color.red);
+        //}
 
-        for (int y = 0; y < (int)height; y++)
-        {
-            Debug.DrawLine(new Vector3(0, 0, y * cellsize), new Vector3(height * cellsize, 0, y * cellsize), Color.red);
-        }
+        //for (int y = 0; y < (int)height; y++)
+        //{
+        //    Debug.DrawLine(new Vector3(0, 0, y * cellsize), new Vector3(height * cellsize, 0, y * cellsize), Color.red);
+        //}
     }
 
     float LU = 0;
@@ -85,7 +85,7 @@ public class Grid : MonoBehaviour
                 if (JudgeObstacle(LB, LU, RB, RU)) grid[x, y] = new Node(true, x, y, LB, LU, RB, RU);
                 else grid[x, y] = new Node(false, x, y, LB, LU, RB, RU);
 
-                if (grid[x, y].YDepthLB <= 0) grid[x, y].walkable = false;
+                if (grid[x, y].YDepthLB <= 1) grid[x, y].walkable = false;
 
 
 
@@ -111,6 +111,8 @@ public class Grid : MonoBehaviour
         //Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width , height), Color.white, 100f);
         //Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
     }
+
+ 
 
     private Vector3 GetWorldPosition(int x, int z)
     {
