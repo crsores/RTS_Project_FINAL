@@ -131,7 +131,8 @@ namespace InputManager
                                 Debug.Log("22");
                                 HitPos.y += 10f;
                                pU.SetDestinatin(HitPos); // 목표지정 << 바꾸면됨
-                                selectedUnits
+                                //selectedUnits
+                              //  transform.LookAt(HitPos);
 
                             }
                             break;
