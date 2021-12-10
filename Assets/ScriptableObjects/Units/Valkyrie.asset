@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 12
   name: Valkyrie
-  unitPrefab: {fileID: 7965696480856803095, guid: 010e657efd4cfad4f98dc47f2d42b5f3, type: 3}
+  unitPrefab: {fileID: 239434740155759371, guid: 9968e74d91e639e409fb520f1a9fbec9, type: 3}
   icon: {fileID: 5392786933212251445, guid: 153cb4fcac2bac646a9975cff018f998, type: 3}
   spawnTime: 50
   baseStats:

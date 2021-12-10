@@ -103,7 +103,9 @@ namespace InputManager
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit))
+                int layerMask =1 << LayerMask.NameToLayer("Sea");
+
+                if (Physics.Raycast(ray, out hit,Mathf.Infinity,layerMask))
                 {
                     LayerMask layerHit = hit.transform.gameObject.layer;
 
@@ -125,7 +127,11 @@ namespace InputManager
                             foreach (Transform unit in selectedUnits)
                             {
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
-                                pU.SetDestinatin(hit.point);
+                                Vector3 HitPos = hit.point;
+                                Debug.Log("22");
+                                HitPos.y += 10f;
+                               pU.SetDestinatin(HitPos); // 목표지정 << 바꾸면됨
+                                selectedUnits
 
                             }
                             break;

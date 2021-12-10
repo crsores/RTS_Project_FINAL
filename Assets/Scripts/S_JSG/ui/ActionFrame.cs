@@ -33,6 +33,7 @@ namespace UI.HUD
         }
         public void SetActionButtons(PlayerAction actions ) //버튼이 샛팅될때 (건물 클릭)
         {
+            Debug.Log("1");
             actionsList = actions;
             //spawnPoint = spawnLocation;
             //spawnPoint2 = spawnLocation2;
@@ -61,16 +62,16 @@ namespace UI.HUD
                    // buttons.Add(icon);
                 }
             }
-            if (actions.Behavior.Count > 0)
-            {
-                foreach(Behavior.player_Skill p_skill in actions.Behavior)
-                {
+            //if (actions.Behavior.Count > 0)
+            //{
+            //    foreach(Behavior.player_Skill p_skill in actions.Behavior)
+            //    {
 
-                    GameObject icon = Instantiate(p_skill.icon, layoutGroup);
-                    icon.name = p_skill.name;
-                    buttons.Add(icon);
-                }
-            }
+            //        GameObject icon = Instantiate(p_skill.icon, layoutGroup);
+            //        icon.name = p_skill.name;
+            //        buttons.Add(icon);
+            //    }
+            //}
         }
 
         public void ClearActions() //비활성화시 

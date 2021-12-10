@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 8
   name: Wraith
-  unitPrefab: {fileID: 4540307875498566332, guid: cefecaa18e8b6034ead9641628303591, type: 3}
+  unitPrefab: {fileID: 7257235514898186073, guid: f698af98e274f8042b6eed19b7af3620, type: 3}
   icon: {fileID: 5392786933212251445, guid: 0bff4d8ddca459343a36bfdf36f669a1, type: 3}
   spawnTime: 60
   baseStats:

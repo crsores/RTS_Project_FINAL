@@ -720,7 +720,7 @@ MonoBehaviour:
     m_Bits: 64
   interactableLayer2:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!114 &397749167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +741,7 @@ MonoBehaviour:
     m_Bits: 64
   eUnitLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
 --- !u!4 &397749168
 Transform:
   m_ObjectHideFlags: 0

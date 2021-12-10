@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 6
   name: SiegeTank
-  unitPrefab: {fileID: 70663555076393186, guid: 8df04ebd930a0c9458c29090fbf3f5e9, type: 3}
+  unitPrefab: {fileID: 5872732092658615484, guid: e9208322e9ab2b14fb4a313510dd8ab9, type: 3}
   icon: {fileID: 5392786933212251445, guid: 0f1d787ca08e06744a59ca53ec53fb60, type: 3}
   spawnTime: 50
   baseStats:

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   name: SCV
-  unitPrefab: {fileID: 8220526249651674627, guid: d4781383b1f55254a93c548854ad8415, type: 3}
+  unitPrefab: {fileID: 3889503317693523464, guid: 2005358479b8ede42814d46428245e1d, type: 3}
   icon: {fileID: 5392786933212251445, guid: 25a720e1eef485948963b1b6e7a190d9, type: 3}
-  spawnTime: 20
+  spawnTime: 2
   baseStats:
     mineral: 50
     gas: 0

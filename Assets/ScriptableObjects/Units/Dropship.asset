@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 9
   name: Dropship
-  unitPrefab: {fileID: 6078557143472173549, guid: bf6af2bea5ed00b4f8dbb51a728d8ed2, type: 3}
+  unitPrefab: {fileID: 7654996598739399153, guid: e8093663be7681c4a9cb6da4f70dd353, type: 3}
   icon: {fileID: 5392786933212251445, guid: 4bac93095a8189a4eb8003d123b76f04, type: 3}
   spawnTime: 50
   baseStats:

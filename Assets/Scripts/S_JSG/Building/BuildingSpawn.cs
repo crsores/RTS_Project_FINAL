@@ -112,9 +112,9 @@ namespace Building
                 spawnMakrer.transform.position.y, spawnMakrer.transform.position.z), Quaternion.identity);
             Units.Player.PlayerUnit pu = spawnedObject.GetComponent<Units.Player.PlayerUnit>();
             //pu.transform.SetParent(GameObject.Find("P_" + pu.unitType.type.ToString() + "s").transform);
-            pu.transform.SetParent(RTS.Player.playerManager.instance.playerUnits);
+            //pu.transform.SetParent(RTS.Player.playerManager.instance.playerUnits);
 
-            spawnedObject.GetComponent<Units.Player.PlayerUnit>().SetDestinatin(spawnMakrer2.transform.position);
+            //spawnedObject.GetComponent<Units.Player.PlayerUnit>().SetDestinatin(spawnMakrer2.transform.position);  생산후 이동
             // SpawnQueue.Remove(SpawnQueue[0]);
             spawnOrder.Remove(spawnOrder[0]);
         }

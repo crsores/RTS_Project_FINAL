@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   name: Goliath
-  unitPrefab: {fileID: 4696632020096570095, guid: a5123b8c0752a924c9374c8a1929f361, type: 3}
+  unitPrefab: {fileID: 3962470013540178236, guid: 4c3e35cd01afb8048b09aed3d884453e, type: 3}
   icon: {fileID: 5392786933212251445, guid: 129f17dd4b7512449b6d0076ea0ecbda, type: 3}
   spawnTime: 40
   baseStats:
