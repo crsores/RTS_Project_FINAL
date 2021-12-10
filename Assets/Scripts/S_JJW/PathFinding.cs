@@ -46,12 +46,12 @@ public class PathFinding : MonoBehaviour
     private void Start()
     {
         cellsize = Grid.gridinstance.Getcellsize;   //Grid에서 설정한 cellsize저장
-         
     }
 
     private void Update()
     {
         SetTarget();
+
         //thisPos = this.transform.position;
 
         //    thisPos.y = Grid.gridinstance.NodePoint(this.transform.position, cellsize).YDepthLB + 1.0f;
@@ -164,6 +164,7 @@ public class PathFinding : MonoBehaviour
 
     public void FindPath()
     {
+        Debug.Log("2");
         //길찾기 함수
         finding = true;
 
@@ -229,7 +230,7 @@ public class PathFinding : MonoBehaviour
             }
         }
 
-        
+
 
         targetIndex = 0;
         StopCoroutine("MoveUnit");
@@ -238,8 +239,8 @@ public class PathFinding : MonoBehaviour
 
     float closeDistance = 1.0f;
 
-  
-    
+
+
     //==============================================================================
 
     //Vector3[] RetracePath(Node startNode, Node endNode)
@@ -315,9 +316,10 @@ public class PathFinding : MonoBehaviour
 
     IEnumerator MoveUnit()
     {
-        // Debug.Log("sss");
+        Debug.Log("sss");
         if (success)
         {
+            Debug.Log("5");
             //   Debug.Log("sadasdsdasad");
             // Debug.Log("유닛 이동");
             Vector3[] Path = RetracePath2(start, end);   //start와 end사이의 이동 포인트를 저장하는 배열 path
@@ -328,8 +330,8 @@ public class PathFinding : MonoBehaviour
                 NodePos.y += 0.5f;
 
 
-               // GameObject DD = Instantiate(Path_, NodePos, Quaternion.Euler(90, 0, 0));
-               
+                GameObject DD = Instantiate(Path_, NodePos, Quaternion.Euler(90, 0, 0));
+
             }
 
 
@@ -355,12 +357,12 @@ public class PathFinding : MonoBehaviour
                         targetIndex++;
                         //Debug.Log(targetIndex);
                     }
-           
+
                     this.transform.LookAt(new Vector3(currentWaypoint.x, this.transform.position.y, currentWaypoint.z));
                     ////  
 
                     this.transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-
+                    Debug.Log("4");
                     thisPos = this.transform.position;
                     thisPos.y = Grid.gridinstance.NodePoint(currentWaypoint, cellsize).YDepthLB + 0.6f;
                     this.transform.position = thisPos;

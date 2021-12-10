@@ -11,14 +11,14 @@ public class UnitObsTest : MonoBehaviour
     void Start()
     {
 
-        OldObs = Grid.gridinstance.NodePoint(Vector3.zero,1);
+        OldObs = Grid.gridinstance.NodePoint(Vector3.zero, 1);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-          
+
 
         Obs = Grid.gridinstance.NodePoint(this.transform.position, 1);
         Obs.walkable = false;

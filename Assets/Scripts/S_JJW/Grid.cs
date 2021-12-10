@@ -27,15 +27,15 @@ public class Grid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //for (int x = 0; x < (int)width; x++)
-        //{
-        //    Debug.DrawLine(new Vector3(x * cellsize, 0, 0), new Vector3(x * cellsize, 0, width * cellsize), Color.red);
-        //}
+        for (int x = 0; x < (int)width; x++)
+        {
+            Debug.DrawLine(new Vector3(x * cellsize, 0, 0), new Vector3(x * cellsize, 0, width * cellsize), Color.red);
+        }
 
-        //for (int y = 0; y < (int)height; y++)
-        //{
-        //    Debug.DrawLine(new Vector3(0, 0, y * cellsize), new Vector3(height * cellsize, 0, y * cellsize), Color.red);
-        //}
+        for (int y = 0; y < (int)height; y++)
+        {
+            Debug.DrawLine(new Vector3(0, 0, y * cellsize), new Vector3(height * cellsize, 0, y * cellsize), Color.red);
+        }
     }
 
     float LU = 0;
@@ -47,7 +47,7 @@ public class Grid : MonoBehaviour
     public void CreateGrid()
     {
         grid = new Node[(int)width, (int)height];   // grid를 가로 세로 만큼 배열 생성
-        Vector3 worldBottomLeft = Vector3.zero - Vector3.right * width / 2 - Vector3.forward * height / 2;
+
 
         for (int x = 0; x < (int)width; x++)
         {
@@ -55,12 +55,12 @@ public class Grid : MonoBehaviour
             {
                 RaycastHit hit;
 
-                int layerMask = (-1) - (1 << LayerMask.NameToLayer("Player_Unit"));
+                int layerMask = (1 << LayerMask.NameToLayer("ground")) + (1 << LayerMask.NameToLayer("Sea"));
 
 
                 //  Vector3 worldPoint = worldBottomLeft + Vector3.right * (x + 0.5f) + Vector3.forward * (y + 0.5f);
 
-                if (Physics.Raycast(new Vector3(x * cellsize, 10, y * cellsize), Vector3.down, out hit, 100f,layerMask))
+                if (Physics.Raycast(new Vector3(x * cellsize, 10, y * cellsize), Vector3.down, out hit, 100f, layerMask))
                 {
                     LB = hit.point.y;
                 }
@@ -87,7 +87,7 @@ public class Grid : MonoBehaviour
 
                 if (grid[x, y].YDepthLB <= 0) grid[x, y].walkable = false;
 
-     
+
 
                 //if (LB == RU&&LB==LU&&LB==RB&&LU==RB&&LU==RU&&RB==RU)
                 //{
