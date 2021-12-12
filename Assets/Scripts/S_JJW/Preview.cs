@@ -70,9 +70,9 @@ public class Preview : MonoBehaviour
 
     private void ChangeColor()
     {
-        Debug.Log("1 : " + colliderList.Count); // 0
-        Debug.Log("2 : " + CanBuildable()); //true
-        Debug.Log("3 : " + isSea());    //false         green
+       // Debug.Log("1 : " + colliderList.Count); // 0
+       // Debug.Log("2 : " + CanBuildable()); //true
+       // Debug.Log("3 : " + isSea());    //false         green
 
 
         if (colliderList.Count > 0 || !CanBuildable() || isSea()) //충돌 물체가 하나 이상일 때 

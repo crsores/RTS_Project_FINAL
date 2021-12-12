@@ -31,7 +31,7 @@ public class PathFinding : MonoBehaviour
     float speed = 10f; //이동 속도
 
     public bool finding;
-    public bool success;    //길찾기가 끝났는지 확인
+    public bool success = false;    //길찾기가 끝났는지 확인
 
     private Rigidbody Rb = null;
     Vector3 thisPos = Vector3.zero;
@@ -117,6 +117,7 @@ public class PathFinding : MonoBehaviour
     }
     // ================================================================
 
+ 
 
 
 
@@ -150,8 +151,12 @@ public class PathFinding : MonoBehaviour
                 //end에 hitPos에 대응하는 NodeIndex를 대입
             }
 
-            if(end.walkable == true)
-            FindPath();
+            //if (end.walkable == true)
+            //{
+                StopCoroutine("FindPath");
+            StopCoroutine("MoveUnit");
+                StartCoroutine("FindPath");
+            //}
             //start와 목적지가 정해졌으면 FindPath함수 실행
         }
     }
@@ -161,17 +166,17 @@ public class PathFinding : MonoBehaviour
 
     // =================================================================
 
-    bool pathSuccess = false;
+    
 
-    public void FindPath()
+    public IEnumerator FindPath()
     {
         
         //길찾기 함수
-        finding = true;
+        
 
         openSet.Add(start); //start를 첫 열린 목록에 추가
 
-    
+
 
         //================================================================================
 
@@ -191,24 +196,39 @@ public class PathFinding : MonoBehaviour
                     }
                 }
 
+                if (currentNode != end && openSet.Count == 0)
+                {
+                    success = false;
+                    Debug.Log("멈춤");
+                    break;
+                }
+
+                //마우스 위치가 이동 가능한 지역인지 확인
+                //이동 불가능하다면 선택 불가
+                //이동 가능한 지역이면 예외처리
+
+
                 openSet.Remove(currentNode);
                 closedSet.Add(currentNode);
+                
+
 
                 // 현재 노드가 목적지면 while문 탈출
                 if (currentNode == end)
                 {
                     //pathSuccess = true;
                     success = true;
+                     targetIndex = 0;
+                     StopCoroutine("MoveUnit");
+                     StartCoroutine("MoveUnit");
+                    Debug.Log("닫힌 Node Count : "+closedSet.Count);
                     break;
                 }
 
+
                 //int X = Grid.gridinstance.TrueNodeCount();
 
-               // Debug.Log(X);
-
-
-
-
+                // Debug.Log(X);
 
                 //이웃 노드를 검색
                 foreach (Node neighbour in Grid.gridinstance.GetNeighbours(currentNode))
@@ -221,8 +241,11 @@ public class PathFinding : MonoBehaviour
 
 
                     int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+                    // 현재 노드의 gCost와 현재 노드와 이웃 노드의 거리를 계산
+
                     if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
+                        //위에서 계산한 값보다 이웃 노드의 gCost가 크거나 
                         neighbour.gCost = newMovementCostToNeighbour;
 
                         neighbour.hCost = GetDistance(neighbour, end);
@@ -232,21 +255,24 @@ public class PathFinding : MonoBehaviour
                         if (!openSet.Contains(neighbour))
                         {
                             openSet.Add(neighbour);
-
                         }
                     }
                 }
             }
-        targetIndex = 0;
-        StopCoroutine("MoveUnit");
-        StartCoroutine("MoveUnit");
-        }
 
+            //if (success)
+            //{
+            //    targetIndex = 0;
+            //    StopCoroutine("MoveUnit");
+            //    StartCoroutine("MoveUnit");
+            //}
+        }
         //길을 찾지 못했을 때 예외처리 필요
 
         //현재 바다는 이미 walkable이 false이기 때문에 선택되지 않음
         //추후 예외처리가 되면 바꿀 예정
 
+        yield return null;
 
     }
 
@@ -320,6 +346,8 @@ public class PathFinding : MonoBehaviour
         //노드간 거리계산
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
         int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+
+        //현재 노드와 이웃노드 사이의 거리 계산
         //Debug.Log(i);
 
         if (dstX > dstY) return 14 * dstY + 10 * (dstX - dstY);
@@ -329,7 +357,7 @@ public class PathFinding : MonoBehaviour
 
     IEnumerator MoveUnit()
     {
-        Debug.Log("sss");
+       // Debug.Log("sss");
         if (success)
         {
             Debug.Log("5");
@@ -337,15 +365,20 @@ public class PathFinding : MonoBehaviour
             // Debug.Log("유닛 이동");
             Vector3[] Path = RetracePath2(start, end);   //start와 end사이의 이동 포인트를 저장하는 배열 path
 
-            for (int i = 0; i < Path.Length; i++)
-            {
-                Vector3 NodePos = Path[i];
-                NodePos.y += 0.5f;
+            //================================================================================
+            //유닛의 이동경로 표시
+
+            //for (int i = 0; i < Path.Length; i++)
+            //{
+            //    Vector3 NodePos = Path[i];
+            //    NodePos.y += 0.5f;
 
 
-                GameObject DD = Instantiate(Path_, NodePos, Quaternion.Euler(90, 0, 0));
+            //    GameObject DD = Instantiate(Path_, NodePos, Quaternion.Euler(90, 0, 0));
 
-            }
+            //}
+
+            //================================================================================
 
 
             Vector3 currentWaypoint = this.transform.position;
@@ -375,7 +408,9 @@ public class PathFinding : MonoBehaviour
                     ////  
 
                     this.transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-                    Debug.Log("4");
+
+                 
+                    //Debug.Log("4");
                     thisPos = this.transform.position;
                     thisPos.y = Grid.gridinstance.NodePoint(currentWaypoint, cellsize).YDepthLB + 0.6f;
                     this.transform.position = thisPos;
@@ -390,4 +425,6 @@ public class PathFinding : MonoBehaviour
         }
 
     }
+
+  
 }

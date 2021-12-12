@@ -49,7 +49,7 @@ public class BuildManager : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layerMask))
             {
-                Debug.Log(hit.point);
+              //  Debug.Log(hit.point);
 
 
                 _location = hit.point;
