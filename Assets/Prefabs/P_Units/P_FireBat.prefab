@@ -91,8 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8509628689161396616}
-  - component: {fileID: 486912059898153325}
-  - component: {fileID: 1707922424684939760}
+  - component: {fileID: 8121488288695009283}
+  - component: {fileID: -579700518047336506}
   m_Layer: 6
   m_Name: P_FireBat
   m_TagString: Untagged
@@ -117,7 +117,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &486912059898153325
+--- !u!114 &8121488288695009283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +126,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2285041626328207656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e94ee18cdb1646987a07dcb18191b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b3adce832f6d314bbac8ddce6b0455c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statDisplay: {fileID: 0}
+  Path_: {fileID: 0}
+  TargetPos: {fileID: 1349783943387753486, guid: 097907f7a3269b84e9206da6ab6fa86a, type: 3}
+  finding: 0
+  success: 0
   unitType: {fileID: 11400000, guid: eae9eba71ffada346b456bfeb5ba3bb1, type: 2}
   baseStats:
     mineral: 0
@@ -158,19 +161,7 @@ MonoBehaviour:
     ground_type: 0
     air_type: 0
     unit_size: 0
-  rangeColliders: []
-  aggerTarget: {fileID: 0}
-  distance: 0
-  attack: 0
-  airattack: 0
-  atkspeed: 0
-  speed: 0
-  armor: 0
-  atkRange: 0
-  atkUpPlus: 0
-  DropCount: 0
-  eyesight: 0
---- !u!114 &1707922424684939760
+--- !u!114 &-579700518047336506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,11 +170,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2285041626328207656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6436efb2b8630804fab2d26e867c94ca, type: 3}
+  m_Script: {fileID: 11500000, guid: fff2aab2767b7fc4caf227bf6cef53a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteracting: 0
-  highlight: {fileID: 0}
 --- !u!65 &4226577335346239874
 BoxCollider:
   m_ObjectHideFlags: 0

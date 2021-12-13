@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6142116236526671817}
   - component: {fileID: 2911845073442106157}
-  - component: {fileID: -4363415475802610757}
-  - component: {fileID: -4962494821684739310}
+  - component: {fileID: 4987538597917082477}
+  - component: {fileID: -4293057115091689737}
   m_Layer: 6
   m_Name: P_ScienceVessel
   m_TagString: Untagged
@@ -49,7 +49,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5577278, y: 2.506412, z: 1.9433169}
   m_Center: {x: 0.087017536, y: 4.9496384, z: 0.04228425}
---- !u!114 &-4363415475802610757
+--- !u!114 &4987538597917082477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,10 +58,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1224568168308064258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e94ee18cdb1646987a07dcb18191b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b3adce832f6d314bbac8ddce6b0455c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statDisplay: {fileID: 0}
+  Path_: {fileID: 0}
+  TargetPos: {fileID: 1349783943387753486, guid: 097907f7a3269b84e9206da6ab6fa86a, type: 3}
+  finding: 0
+  success: 0
   unitType: {fileID: 11400000, guid: 7dabfa2fad02c1a49bbf0fe326751b79, type: 2}
   baseStats:
     mineral: 0
@@ -90,19 +93,7 @@ MonoBehaviour:
     ground_type: 0
     air_type: 0
     unit_size: 0
-  rangeColliders: []
-  aggerTarget: {fileID: 0}
-  distance: 0
-  attack: 0
-  airattack: 0
-  atkspeed: 0
-  speed: 0
-  armor: 0
-  atkRange: 0
-  atkUpPlus: 0
-  DropCount: 0
-  eyesight: 0
---- !u!114 &-4962494821684739310
+--- !u!114 &-4293057115091689737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,11 +102,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1224568168308064258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6436efb2b8630804fab2d26e867c94ca, type: 3}
+  m_Script: {fileID: 11500000, guid: fff2aab2767b7fc4caf227bf6cef53a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteracting: 0
-  highlight: {fileID: 0}
 --- !u!1 &3156024813925076556
 GameObject:
   m_ObjectHideFlags: 0

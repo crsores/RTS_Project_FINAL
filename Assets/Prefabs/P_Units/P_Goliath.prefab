@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6202589536454678040}
-  - component: {fileID: 1056151190349293507}
-  - component: {fileID: -2249408542361113057}
+  - component: {fileID: 4239598669444192815}
+  - component: {fileID: -8016737476430802033}
   m_Layer: 6
   m_Name: P_Goliath
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1056151190349293507
+--- !u!114 &4239598669444192815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3962470013540178236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e94ee18cdb1646987a07dcb18191b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b3adce832f6d314bbac8ddce6b0455c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statDisplay: {fileID: 0}
+  Path_: {fileID: 0}
+  TargetPos: {fileID: 1349783943387753486, guid: 097907f7a3269b84e9206da6ab6fa86a, type: 3}
+  finding: 0
+  success: 0
   unitType: {fileID: 11400000, guid: e9a4bdc37dd4ae54886042fc9ef4adf3, type: 2}
   baseStats:
     mineral: 0
@@ -76,19 +79,7 @@ MonoBehaviour:
     ground_type: 0
     air_type: 0
     unit_size: 0
-  rangeColliders: []
-  aggerTarget: {fileID: 0}
-  distance: 0
-  attack: 0
-  airattack: 0
-  atkspeed: 0
-  speed: 0
-  armor: 0
-  atkRange: 0
-  atkUpPlus: 0
-  DropCount: 0
-  eyesight: 0
---- !u!114 &-2249408542361113057
+--- !u!114 &-8016737476430802033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,11 +88,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3962470013540178236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6436efb2b8630804fab2d26e867c94ca, type: 3}
+  m_Script: {fileID: 11500000, guid: fff2aab2767b7fc4caf227bf6cef53a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteracting: 0
-  highlight: {fileID: 0}
 --- !u!1 &5612364486824887738
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,8 +45,8 @@ namespace InputManager
         }
         public void HandleUnitMovement() // 조작
         {
-           
-           
+
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject())
@@ -63,11 +63,11 @@ namespace InputManager
                     {
                         // be able to do stuff with units
                     }
-                    
+
                 }
-                else if (Physics.Raycast(ray, out hit, 100, interactableLayer2)) 
+                else if (Physics.Raycast(ray, out hit, 100, interactableLayer2))
                 {
-                 if (addeBuilding(hit.transform))
+                    if (addeBuilding(hit.transform))
                     {
                         //be able td do stuff with building
                     }
@@ -89,7 +89,7 @@ namespace InputManager
 
                 foreach (Transform child in RTS.Player.playerManager.instance.playerUnits)
                 {
-                   // foreach (Transform unit in child)
+                    // foreach (Transform unit in child)
                     {
                         if (iswithinSelectionBounds(child))//범위안에 유닛이 있을경우
                         {
@@ -103,9 +103,9 @@ namespace InputManager
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                int layerMask =1 << LayerMask.NameToLayer("Sea");
+                int layerMask = 1 << LayerMask.NameToLayer("Sea");
 
-                if (Physics.Raycast(ray, out hit,Mathf.Infinity,layerMask))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
                 {
                     LayerMask layerHit = hit.transform.gameObject.layer;
 
@@ -113,7 +113,7 @@ namespace InputManager
                     {
                         case 6: //Units Layer
 
-                           for (int i = 0; selectedUnits[i]; i++)
+                            for (int i = 0; selectedUnits[i]; i++)
                             {
                                 //selectedUnits[i].GetComponent<>().baseStats.    
 
@@ -129,10 +129,10 @@ namespace InputManager
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
                                 Vector3 HitPos = hit.point;
                                 Debug.Log("22");
-                                HitPos.y += 10f;
-                               pU.SetDestinatin(HitPos); // 목표지정 << 바꾸면됨
+                                // HitPos.y += 10f;
+                                // pU.SetDestinatin(HitPos); // 목표지정 << 바꾸면됨
                                 //selectedUnits
-                              //  transform.LookAt(HitPos);
+                                //  transform.LookAt(HitPos);
 
                             }
                             break;
@@ -141,11 +141,11 @@ namespace InputManager
                 }
 
             }
-            else if (Input.GetMouseButtonDown(1)&&selectedBuilding != null)
+            else if (Input.GetMouseButtonDown(1) && selectedBuilding != null)
             {
 
-                 if (selectedBuilding.GetComponent<Building.Player.PlayerBuilding>().baseStats.spawn==true)
-                selectedBuilding.gameObject.GetComponent<Building.BuildingSpawn>().SetSpawnMarkerLocation();//마우스 클릭한곳 스폰 위치 지정
+                if (selectedBuilding.GetComponent<Building.Player.PlayerBuilding>().baseStats.spawn == true)
+                    selectedBuilding.gameObject.GetComponent<Building.BuildingSpawn>().SetSpawnMarkerLocation();//마우스 클릭한곳 스폰 위치 지정
             }
             else if (Input.GetMouseButtonDown(1) && selectedUnits.Count > 0)
             {
@@ -225,7 +225,7 @@ namespace InputManager
                 return null;
             }
 
-            
+
 
         }
 
@@ -252,17 +252,17 @@ namespace InputManager
         }
         public void UnitSpawn(string objectToSpwan)
         {
-            
-            
-                selectedBuilding.GetComponent<Building.BuildingSpawn>().StartSpawnTimer(objectToSpwan);
-           
+
+
+            selectedBuilding.GetComponent<Building.BuildingSpawn>().StartSpawnTimer(objectToSpwan);
+
 
         }
 
-        
+
 
     }
-            
 
-    
+
+
 }

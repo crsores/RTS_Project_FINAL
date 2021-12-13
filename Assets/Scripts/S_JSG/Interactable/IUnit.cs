@@ -14,5 +14,9 @@ namespace Interactables
         {
             base.OnInteractExit();
         }
+        public bool isSelected()
+        {
+            return isInteracting;
+        }
     }
 }

@@ -184,8 +184,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6407759158174877002}
-  - component: {fileID: -4854815776837759100}
-  - component: {fileID: -4742857718777124324}
+  - component: {fileID: -22134798362091914}
+  - component: {fileID: -9010911963737112750}
   m_Layer: 6
   m_Name: P_Marine
   m_TagString: Untagged
@@ -210,7 +210,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4854815776837759100
+--- !u!114 &-22134798362091914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,10 +219,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040215346496990929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8e94ee18cdb1646987a07dcb18191b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b3adce832f6d314bbac8ddce6b0455c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statDisplay: {fileID: 0}
+  Path_: {fileID: 0}
+  TargetPos: {fileID: 1349783943387753486, guid: 097907f7a3269b84e9206da6ab6fa86a, type: 3}
+  finding: 0
+  success: 0
   unitType: {fileID: 11400000, guid: 902f2ed501565124594d2f48ac862d7f, type: 2}
   baseStats:
     mineral: 0
@@ -251,19 +254,7 @@ MonoBehaviour:
     ground_type: 0
     air_type: 0
     unit_size: 0
-  rangeColliders: []
-  aggerTarget: {fileID: 0}
-  distance: 0
-  attack: 0
-  airattack: 0
-  atkspeed: 0
-  speed: 0
-  armor: 0
-  atkRange: 0
-  atkUpPlus: 0
-  DropCount: 0
-  eyesight: 0
---- !u!114 &-4742857718777124324
+--- !u!114 &-9010911963737112750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,11 +263,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040215346496990929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6436efb2b8630804fab2d26e867c94ca, type: 3}
+  m_Script: {fileID: 11500000, guid: fff2aab2767b7fc4caf227bf6cef53a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteracting: 0
-  highlight: {fileID: 0}
 --- !u!1001 &1654980098509636563
 PrefabInstance:
   m_ObjectHideFlags: 0
