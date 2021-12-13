@@ -36,6 +36,8 @@ public class PathFinding : MonoBehaviour
     private Rigidbody Rb = null;
     Vector3 thisPos = Vector3.zero;
 
+    //======================================================================
+    //공중 유닛 이동을 위한 변수
 
     Interactables.IUnit iUnit = null;
 
@@ -45,57 +47,44 @@ public class PathFinding : MonoBehaviour
 
     private bool isMove = false;
 
-    private void Awake()
-    {
-        Rb = GetComponent<Rigidbody>();
-        iUnit = GetComponentInChildren<Interactables.IUnit>();
-        
-    }
+    Vector3 Movedis = Vector3.zero;
+    Vector3 LookDir = Vector3.zero;
+    //=======================================================================
+
+    //유닛의 장애물 판정을 위한 변수
+    UnitObsTest UO = null;
+
 
     private void Start()
     {
+        Rb = GetComponent<Rigidbody>();
+        iUnit = GetComponentInChildren<Interactables.IUnit>();   
         cellsize = Grid.gridinstance.Getcellsize;   //Grid에서 설정한 cellsize저장
-
         baseStats = unitType.baseStats;
+        UO = GetComponent<UnitObsTest>();
+        UO.UnitObstacle();
     }
-
-        Vector3 Movedis = Vector3.zero;
-    Vector3 LookDir = Vector3.zero;
+     
     private void Update()
     {
-        Debug.Log(iUnit.isSelected());
-       
 
-
-        if (iUnit.isSelected())
+        if (iUnit.isSelected()) //유닛이 선택이 되면
         {
-            if (!baseStats.air)
+            if (Input.GetMouseButtonDown(1))
             {
-                Debug.Log("지상유닛");
-                SetTarget();
-            }
-            else
-            {
-                if (Input.GetMouseButtonDown(1))
+                if (!baseStats.air) //공중유닛인지 판단
                 {
-                    isMove = true;
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        TargetPos_ = hit.point;
-                        this.transform.LookAt(Movedis);
-                    }
-
-                     Movedis = new Vector3(TargetPos_.x, 0, TargetPos_.z);
-                    LookDir = new Vector3(TargetPos_.x, this.transform.position.y, TargetPos_.z);
-                    this.transform.LookAt(LookDir);
-
+                  SetTarget();
                 }
+            else
+                {
+                  FlyingTarget();
+                }
+                
             }
         }
-                    FloyingMoveUnit(Movedis);
+         
+        FloyingMoveUnit(Movedis);
         
        
       
@@ -269,6 +258,9 @@ public class PathFinding : MonoBehaviour
                      targetIndex = 0;
                      StopCoroutine("MoveUnit");
                      StartCoroutine("MoveUnit");
+
+                    UO.ReSetUnitObstacle();
+
                     Debug.Log("닫힌 Node Count : "+closedSet.Count);
                     break;
                 }
@@ -308,12 +300,7 @@ public class PathFinding : MonoBehaviour
                 }
             }
 
-            //if (success)
-            //{
-            //    targetIndex = 0;
-            //    StopCoroutine("MoveUnit");
-            //    StartCoroutine("MoveUnit");
-            //}
+         
         }
         //길을 찾지 못했을 때 예외처리 필요
 
@@ -408,9 +395,6 @@ public class PathFinding : MonoBehaviour
        // Debug.Log("sss");
         if (success)
         {
-            Debug.Log("5");
-            //   Debug.Log("sadasdsdasad");
-            // Debug.Log("유닛 이동");
             Vector3[] Path = RetracePath2(start, end);   //start와 end사이의 이동 포인트를 저장하는 배열 path
 
             //================================================================================
@@ -453,12 +437,8 @@ public class PathFinding : MonoBehaviour
                     }
 
                     this.transform.LookAt(new Vector3(currentWaypoint.x, this.transform.position.y, currentWaypoint.z));
-                    ////  
-
                     this.transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
 
-                 
-                    //Debug.Log("4");
                     thisPos = this.transform.position;
                     thisPos.y = Grid.gridinstance.NodePoint(currentWaypoint, cellsize).YDepthLB + 0.6f;
                     this.transform.position = thisPos;
@@ -466,46 +446,30 @@ public class PathFinding : MonoBehaviour
                     yield return null;
 
                 }
+                
                 else yield break;
 
             }
+            UO.UnitObstacle();
 
         }
 
     }
 
-    private void MoveFlyingUnit()
+    private void FlyingTarget()
     {
-    
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        isMove = true;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-            Vector3 TargetPos = Vector3.zero;
-            if (Physics.Raycast(ray, out hit,Mathf.Infinity))
-            {
-                TargetPos = hit.point;
-            }
+        if (Physics.Raycast(ray, out hit))
+        {
+            TargetPos_ = hit.point;
+        }
 
-
-
-            float AxisX = TargetPos.x - transform.position.x;
-            float AxisY = TargetPos.z - transform.position.z;
-            Vector3 Movedis = new Vector3(AxisX, 0, AxisY);
-
-            float SqrLen = Movedis.sqrMagnitude;
-
-            transform.position += Movedis.normalized * speed * Time.deltaTime;
-
-
-            if (SqrLen < 1.0f)
-            {
-
-            }
-        
-
-
-
-
+        Movedis = new Vector3(TargetPos_.x, 0, TargetPos_.z);
+        LookDir = new Vector3(TargetPos_.x, this.transform.position.y, TargetPos_.z);
+        this.transform.LookAt(LookDir);
     }
 
 
@@ -520,14 +484,11 @@ public class PathFinding : MonoBehaviour
             if (isMove)
             {
                 var dir = Dir_ - CurrentPos;
-            Debug.Log(Dir_ + " : 타겟위치");
-            Debug.Log(CurrentPos + " : 현재위치");
             transform.position += dir.normalized * Time.deltaTime * baseStats.speed;
             }
             if (Vector3.Distance(CurrentPos, Dir_) <= 0.1f)
             {
                 isMove = false;
-
             }
         
     }
