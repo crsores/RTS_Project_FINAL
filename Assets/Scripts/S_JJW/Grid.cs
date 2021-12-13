@@ -6,21 +6,13 @@ public class Grid : MonoBehaviour
 {
     public static Grid gridinstance = null;
 
-
-    public Node1 Mstartnode;
-    public Node1 Mendnode;
-    public float Mcellsize;
-
     public Node startnode;
     public Node endnode;
-
-
     public int width;
     public int height;
     public float cellsize;
 
     Node[,] grid;   //Node의 index번호를 저장할 grid 변수
-    Node1[,] Mgrid;
 
     private void Awake()
     {
@@ -30,21 +22,20 @@ public class Grid : MonoBehaviour
     }
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int x = 0; x < (int)width; x++)
-        {
-            Debug.DrawLine(new Vector3(x * cellsize, 0, 0), new Vector3(x * cellsize, 0, width * cellsize), Color.red);
-        }
+        //for (int x = 0; x < (int)width; x++)
+        //{
+        //    Debug.DrawLine(new Vector3(x * cellsize, 0, 0), new Vector3(x * cellsize, 0, width * cellsize), Color.red);
+        //}
 
-        for (int y = 0; y < (int)height; y++)
-        {
-            Debug.DrawLine(new Vector3(0, 0, y * cellsize), new Vector3(height * cellsize, 0, y * cellsize), Color.red);
-        }
+        //for (int y = 0; y < (int)height; y++)
+        //{
+        //    Debug.DrawLine(new Vector3(0, 0, y * cellsize), new Vector3(height * cellsize, 0, y * cellsize), Color.red);
+        //}
     }
 
     float LU = 0;
@@ -52,18 +43,10 @@ public class Grid : MonoBehaviour
     float RU = 0;
     float RB = 0;
 
-    float MLU = 0;
-    float MLB = 0;
-    float MRU = 0;
-    float MRB = 0;
-
     Vector2 Center;
-
-    List<Node> MiniNode = new List<Node>();
     public void CreateGrid()
     {
         grid = new Node[(int)width, (int)height];   // grid를 가로 세로 만큼 배열 생성
-
 
 
         for (int x = 0; x < (int)width; x++)
@@ -105,97 +88,29 @@ public class Grid : MonoBehaviour
                 if (grid[x, y].YDepthLB <= 1) grid[x, y].walkable = false;
 
 
-                
 
-                //=============================================================================================================================
-                
+                //if (LB == RU&&LB==LU&&LB==RB&&LU==RB&&LU==RU&&RB==RU)
+                //{
+                //    grid[x, y] = new Node(true, x, y, LB, LU, RB, RU,Center);
+                //   // Debug.Log("1");
+                //}
+                //else
+                //{
+                //    grid[x, y] = new Node(false, x, y, LB, LU, RB, RU, Center);
+                //  //  Debug.Log("2");
+                ////    Debug.Log(x + " : " + y);
+                //}
+                //  //  Debug.Log((LB == LU && LU == RU && RU == RB));
 
-                //=========================================================================================
+                // Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
+                // Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
+                //Debug.Log(GetWorldPosition(x,y));
 
-
-                    //if (LB == RU&&LB==LU&&LB==RB&&LU==RB&&LU==RU&&RB==RU)
-                    //{
-                    //    grid[x, y] = new Node(true, x, y, LB, LU, RB, RU,Center);
-                    //   // Debug.Log("1");
-                    //}
-                    //else
-                    //{
-                    //    grid[x, y] = new Node(false, x, y, LB, LU, RB, RU, Center);
-                    //  //  Debug.Log("2");
-                    ////    Debug.Log(x + " : " + y);
-                    //}
-                    //  //  Debug.Log((LB == LU && LU == RU && RU == RB));
-
-                    // Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f);
-                    // Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.white, 100f);
-                    //Debug.Log(GetWorldPosition(x,y));
-
-                }
             }
-            //Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width , height), Color.white, 100f);
-            //Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
         }
-
-    //private void MegaTileCreate()
-    //{
-    //                List<Node> ArrMiniTile = new List<Node>();
-    //    for (int i = 0; i < (width * height) / 16; i++) {   //MegaTile의 갯수
-    //        for (int y = 0; y <4; y++)
-    //        {
-    //            for (int x = 0; x < 4; x++)
-    //            {
-    //                int YRow = width * (y + i);
-    //                int XCol = i * 4 + x;
-    //                MiniNode.Add(grid[XCol, YRow]);
-    //            }
-    //        }
-    //                ArrMiniTile.Add(MiniNode[i]);
-    //    }
-
-
-    //    Mgrid = new Node1[(int)width / 4, (int)height / 4];
-
-    //    for (int y = 0; y < width / 4; y++)
-    //    {
-    //        for (int x = 0; x < height / 4; x++) 
-    //        {
-    //            RaycastHit hit;
-
-    //            int layerMask = (1 << LayerMask.NameToLayer("ground")) + (1 << LayerMask.NameToLayer("Sea"));
-
-    //            //  Vector3 worldPoint = worldBottomLeft + Vector3.right * (x + 0.5f) + Vector3.forward * (y + 0.5f);
-
-    //                if (Physics.Raycast(new Vector3(x * Mcellsize, 10, y * Mcellsize), Vector3.down, out hit, 100f, layerMask))
-    //                {
-    //                    LB = hit.point.y;
-    //                }
-    //                if (Physics.Raycast(new Vector3(x * Mcellsize, 10, y * Mcellsize + Mcellsize), Vector3.down, out hit, 100f, layerMask))
-    //                {
-    //                    LU = hit.point.y;
-    //                }
-    //                if (Physics.Raycast(new Vector3(x * Mcellsize + Mcellsize, 10, y * Mcellsize), Vector3.down, out hit, 100f, layerMask))
-    //                {
-    //                    RB = hit.point.y;
-    //                }
-    //                if (Physics.Raycast(new Vector3(x * Mcellsize + Mcellsize, 10, y * Mcellsize + Mcellsize), Vector3.down, out hit, 100f, layerMask))
-    //                {
-    //                    RU = hit.point.y;
-    //                }
-
-
-    //            // Debug.Log(LB +" : "+ LU + " : " + RB + " : " + RU);
-
-    //            //                grid[x, y] = new Node(true, x, y, LB, LU, RB, RU, Center);
-    //            int X = x + y;
-    //                if (JudgeObstacle(LB, LU, RB, RU)) Mgrid[x, y] = new Node1(true, x, y, LB, LU, RB, RU,MiniNode);
-    //                else Mgrid[x, y] = new Node1(false, x, y, LB, LU, RB, RU);
-
-    //                if (Mgrid[x, y].YDepthLB <= 1) Mgrid[x, y].walkable = false;
-    //            }
-    //        }
-        
-    //    } 
-    
+        //Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width , height), Color.white, 100f);
+        //Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
+    }
 
  
 
@@ -206,8 +121,10 @@ public class Grid : MonoBehaviour
 
     public Node NodePoint(Vector3 rayPosition, float cellsize)
     {
+
         int x = (int)(rayPosition.x / cellsize);
         int z = (int)(rayPosition.z / cellsize);
+
         return grid[x, z];
     }
 
@@ -221,7 +138,7 @@ public class Grid : MonoBehaviour
             float Y = path[i].YDepthLB;
             float Z = path[i].gridY * cellsize + cellsize / 2;
 
-          //  Debug.Log("hihi");
+            Debug.Log("hihi");
 
             waypoints.Add(new Vector3(X, Y, Z));
         }

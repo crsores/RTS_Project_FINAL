@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 13
   name: SpiderMine
-  unitPrefab: {fileID: 0}
-  enemyPrefab: {fileID: 0}
-  icon: {fileID: 0}
+  unitPrefab: {fileID: 8381589785461749057, guid: cac232347455788458a9b9af495b88bb, type: 3}
+  icon: {fileID: 5392786933212251445, guid: 75bdd59b87e41bd4f97f0d7b3cf0891c, type: 3}
   spawnTime: 0
   baseStats:
     mineral: 0

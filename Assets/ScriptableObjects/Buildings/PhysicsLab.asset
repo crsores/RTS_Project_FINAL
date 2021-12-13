@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 15
   name: PhysicsLab
   buildingPrefab: {fileID: 6704302974704353976, guid: 2d925c770eea8c24780decfd32e42626, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: a675a2992b07d3f42876b961dd67c42e, type: 3}
   spawnTime: 40
   baseStats:
     mineral: 50

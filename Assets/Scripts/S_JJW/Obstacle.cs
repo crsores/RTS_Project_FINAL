@@ -5,69 +5,74 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 
-    //건물이 날고 있는지 아닌지 판단할 변수 선언
     private bool isFlyBuilding = false;
-
-    //건물의 scale값을 저장할 변수 선언
     private float sizeX = 0;
     private float sizeZ = 0;
 
     private float cellsize = 0f;
-
-
     private void Start()
     {
 
         cellsize = Grid.gridinstance.cellsize;
         sizeX = this.transform.localScale.x;
         sizeZ = this.transform.localScale.z;
-
-
         //StartCoroutine("SetBuildingObs");
-        SetObstacle(isFlyBuilding);
-        Debug.Log(sizeX + " X size");
-        Debug.Log(sizeZ + " Z size");
+        SetObstacle();
     }
 
+    //장애물의 중심점이 가운데라고 했을 때
+    // 중심점을 기준으로 셀 사이즈 / local scale 만큼 반복문 돌리기
+    // cellsize의 2/1 간격으로 node를 false로 바꾸기
 
-
-    private void SetObstacle(bool isFlying)
+    private void SetObstacle()
     {
-       
+        Vector3 thisScale = this.transform.localScale;
         Vector3 thisPos = this.transform.position;
 
-       
+        float nodeTerm = cellsize / 2;
+        Debug.Log(nodeTerm);
+        int CountNode = (int)(1 / cellsize);
 
-        //건물의 크기만큼 장애물로 인식될 노드의 갯수 설정
-        int Xpos = (int)(sizeX / cellsize);
-        int Zpos = (int)(sizeZ / cellsize);
+
+        int Xpos = (int)(thisScale.x / cellsize);
+        int Zpos = (int)(thisScale.z / cellsize);
 
         for (int i = 0; i < Xpos; i++)
         {
             for (int j = 0; j < Zpos; j++)
             {
-                Vector3 ObsPos = new Vector3((thisPos.x+i*cellsize), 0, (thisPos.z + j * cellsize) );
-                Grid.gridinstance.NodePoint(ObsPos, cellsize).walkable = isFlying;
-             //   Debug.Log(Grid.gridinstance.NodePoint(ObsPos, cellsize).gridX + " : "+ Grid.gridinstance.NodePoint(ObsPos, cellsize).gridY);
+                Vector3 ObsPos = new Vector3((thisPos.x + cellsize * i), 0, (thisPos.z + cellsize * j));
+                Grid.gridinstance.NodePoint(ObsPos, cellsize).walkable = false;
+
+                Debug.Log(this.transform.position);
+                Debug.Log(ObsPos);
+
+
             }
         }
     }
 
     private void Update()
     {
-        //int Xpos = (int)(this.transform.localScale.x / cellsize);
-        //int Zpos = (int)(this.transform.localScale.z / cellsize);
+        Vector3 thisScale = this.transform.localScale;
+        Vector3 thisPos = this.transform.position;
 
-        //for (int i = 0; i < Xpos; i++)
-        //{
-        //    for (int j = 0; j < Zpos; j++)
-        //    {
-        //        //Grid.gridinstance.NodePoint(new Vector3(thisPos.x + i, 0, thisPos.z + j), cellsize);
-        //        Debug.DrawLine(new Vector3(this.transform.position.x + i/2, 0, this.transform.position.z+j/2), new Vector3(this.transform.position.x+i/2, 10, this.transform.position.z + j/2), Color.blue);
-                
-        //    }
+        float nodeTerm = cellsize / 2;
+        int CountNode = (int)(1 / cellsize);
 
-        //}
+
+        int Xpos = (int)(thisScale.x / cellsize);
+        int Zpos = (int)(thisScale.z / cellsize);
+
+        for (int i = 0; i < Xpos; i++)
+        {
+            for (int j = 0; j < Zpos; j++)
+            {
+                //Grid.gridinstance.NodePoint(new Vector3(thisPos.x + i, 0, thisPos.z + j), cellsize);
+                Debug.DrawLine(new Vector3(thisPos.x + i, 0, thisPos.z + j), new Vector3(thisPos.x + i, 10, thisPos.z + j), Color.blue);
+
+            }
+        }
     }
 
 

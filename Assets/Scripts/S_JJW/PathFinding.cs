@@ -31,63 +31,26 @@ public class PathFinding : MonoBehaviour
     float speed = 10f; //이동 속도
 
     public bool finding;
-    public bool success = false;    //길찾기가 끝났는지 확인
+    public bool success;    //길찾기가 끝났는지 확인
 
     private Rigidbody Rb = null;
     Vector3 thisPos = Vector3.zero;
 
-    //======================================================================
-    //공중 유닛 이동을 위한 변수
 
-    Interactables.IUnit iUnit = null;
 
-    public Units.BasicUnit unitType;
-
-    public Units.UnitStatType.Base baseStats;
-
-    private bool isMove = false;
-
-    Vector3 Movedis = Vector3.zero;
-    Vector3 LookDir = Vector3.zero;
-    //=======================================================================
-
-    //유닛의 장애물 판정을 위한 변수
-    UnitObsTest UO = null;
-
+    private void Awake()
+    {
+        Rb = GetComponent<Rigidbody>();
+    }
 
     private void Start()
     {
-        Rb = GetComponent<Rigidbody>();
-        iUnit = GetComponentInChildren<Interactables.IUnit>();   
         cellsize = Grid.gridinstance.Getcellsize;   //Grid에서 설정한 cellsize저장
-        baseStats = unitType.baseStats;
-        UO = GetComponent<UnitObsTest>();
-        UO.UnitObstacle();
     }
-     
+
     private void Update()
     {
-
-        if (iUnit.isSelected()) //유닛이 선택이 되면
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (!baseStats.air) //공중유닛인지 판단
-                {
-                  SetTarget();
-                }
-            else
-                {
-                  FlyingTarget();
-                }
-                
-            }
-        }
-         
-        FloyingMoveUnit(Movedis);
-        
-       
-      
+        SetTarget();
 
         //thisPos = this.transform.position;
 
@@ -154,7 +117,6 @@ public class PathFinding : MonoBehaviour
     }
     // ================================================================
 
- 
 
 
 
@@ -188,12 +150,8 @@ public class PathFinding : MonoBehaviour
                 //end에 hitPos에 대응하는 NodeIndex를 대입
             }
 
-            //if (end.walkable == true)
-            //{
-                StopCoroutine("FindPath");
-            StopCoroutine("MoveUnit");
-                StartCoroutine("FindPath");
-            //}
+            if(end.walkable == true)
+            FindPath();
             //start와 목적지가 정해졌으면 FindPath함수 실행
         }
     }
@@ -203,17 +161,17 @@ public class PathFinding : MonoBehaviour
 
     // =================================================================
 
-    
+    bool pathSuccess = false;
 
-    public IEnumerator FindPath()
+    public void FindPath()
     {
         
         //길찾기 함수
-        
+        finding = true;
 
         openSet.Add(start); //start를 첫 열린 목록에 추가
 
-
+    
 
         //================================================================================
 
@@ -233,42 +191,24 @@ public class PathFinding : MonoBehaviour
                     }
                 }
 
-                if (currentNode != end && openSet.Count == 0)
-                {
-                    success = false;
-                    Debug.Log("멈춤");
-                    break;
-                }
-
-                //마우스 위치가 이동 가능한 지역인지 확인
-                //이동 불가능하다면 선택 불가
-                //이동 가능한 지역이면 예외처리
-
-
                 openSet.Remove(currentNode);
                 closedSet.Add(currentNode);
-                
-
 
                 // 현재 노드가 목적지면 while문 탈출
                 if (currentNode == end)
                 {
                     //pathSuccess = true;
                     success = true;
-                     targetIndex = 0;
-                     StopCoroutine("MoveUnit");
-                     StartCoroutine("MoveUnit");
-
-                    UO.ReSetUnitObstacle();
-
-                    Debug.Log("닫힌 Node Count : "+closedSet.Count);
                     break;
                 }
 
-
                 //int X = Grid.gridinstance.TrueNodeCount();
 
-                // Debug.Log(X);
+               // Debug.Log(X);
+
+
+
+
 
                 //이웃 노드를 검색
                 foreach (Node neighbour in Grid.gridinstance.GetNeighbours(currentNode))
@@ -281,11 +221,8 @@ public class PathFinding : MonoBehaviour
 
 
                     int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-                    // 현재 노드의 gCost와 현재 노드와 이웃 노드의 거리를 계산
-
                     if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
-                        //위에서 계산한 값보다 이웃 노드의 gCost가 크거나 
                         neighbour.gCost = newMovementCostToNeighbour;
 
                         neighbour.hCost = GetDistance(neighbour, end);
@@ -295,19 +232,21 @@ public class PathFinding : MonoBehaviour
                         if (!openSet.Contains(neighbour))
                         {
                             openSet.Add(neighbour);
+
                         }
                     }
                 }
             }
-
-         
+        targetIndex = 0;
+        StopCoroutine("MoveUnit");
+        StartCoroutine("MoveUnit");
         }
+
         //길을 찾지 못했을 때 예외처리 필요
 
         //현재 바다는 이미 walkable이 false이기 때문에 선택되지 않음
         //추후 예외처리가 되면 바꿀 예정
 
-        yield return null;
 
     }
 
@@ -381,8 +320,6 @@ public class PathFinding : MonoBehaviour
         //노드간 거리계산
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
         int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-
-        //현재 노드와 이웃노드 사이의 거리 계산
         //Debug.Log(i);
 
         if (dstX > dstY) return 14 * dstY + 10 * (dstX - dstY);
@@ -392,25 +329,23 @@ public class PathFinding : MonoBehaviour
 
     IEnumerator MoveUnit()
     {
-       // Debug.Log("sss");
+        Debug.Log("sss");
         if (success)
         {
+            Debug.Log("5");
+            //   Debug.Log("sadasdsdasad");
+            // Debug.Log("유닛 이동");
             Vector3[] Path = RetracePath2(start, end);   //start와 end사이의 이동 포인트를 저장하는 배열 path
 
-            //================================================================================
-            //유닛의 이동경로 표시
-
-            //for (int i = 0; i < Path.Length; i++)
-            //{
-            //    Vector3 NodePos = Path[i];
-            //    NodePos.y += 0.5f;
+            for (int i = 0; i < Path.Length; i++)
+            {
+                Vector3 NodePos = Path[i];
+                NodePos.y += 0.5f;
 
 
-            //    GameObject DD = Instantiate(Path_, NodePos, Quaternion.Euler(90, 0, 0));
+                GameObject DD = Instantiate(Path_, NodePos, Quaternion.Euler(90, 0, 0));
 
-            //}
-
-            //================================================================================
+            }
 
 
             Vector3 currentWaypoint = this.transform.position;
@@ -437,8 +372,10 @@ public class PathFinding : MonoBehaviour
                     }
 
                     this.transform.LookAt(new Vector3(currentWaypoint.x, this.transform.position.y, currentWaypoint.z));
-                    this.transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+                    ////  
 
+                    this.transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+                    Debug.Log("4");
                     thisPos = this.transform.position;
                     thisPos.y = Grid.gridinstance.NodePoint(currentWaypoint, cellsize).YDepthLB + 0.6f;
                     this.transform.position = thisPos;
@@ -446,52 +383,11 @@ public class PathFinding : MonoBehaviour
                     yield return null;
 
                 }
-                
                 else yield break;
 
             }
-            UO.UnitObstacle();
 
         }
 
     }
-
-    private void FlyingTarget()
-    {
-        isMove = true;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            TargetPos_ = hit.point;
-        }
-
-        Movedis = new Vector3(TargetPos_.x, 0, TargetPos_.z);
-        LookDir = new Vector3(TargetPos_.x, this.transform.position.y, TargetPos_.z);
-        this.transform.LookAt(LookDir);
-    }
-
-
-            Vector3 TargetPos_ = Vector3.zero;
-    public void FloyingMoveUnit(Vector3 Dir_)
-    {
-        
-            
-
-            Vector3 CurrentPos = new Vector3(this.transform.position.x, 0, this.transform.position.z);
-
-            if (isMove)
-            {
-                var dir = Dir_ - CurrentPos;
-            transform.position += dir.normalized * Time.deltaTime * baseStats.speed;
-            }
-            if (Vector3.Distance(CurrentPos, Dir_) <= 0.1f)
-            {
-                isMove = false;
-            }
-        
-    }
-
-
 }

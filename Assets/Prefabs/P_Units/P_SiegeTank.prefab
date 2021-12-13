@@ -162,7 +162,6 @@ MonoBehaviour:
   atkUpPlus: 0
   DropCount: 0
   eyesight: 0
-  air: 0
 --- !u!114 &9075652970451935966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +196,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8943472141784588425}
-  - component: {fileID: 2625390126664900563}
+  - component: {fileID: 1663779067650997233}
+  - component: {fileID: 8652425162828939172}
   m_Layer: 6
   m_Name: P_SiegeTank
   m_TagString: Untagged
@@ -222,7 +222,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2625390126664900563
+--- !u!114 &1663779067650997233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,13 +231,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5872732092658615484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3adce832f6d314bbac8ddce6b0455c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f8e94ee18cdb1646987a07dcb18191b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path_: {fileID: 0}
-  TargetPos: {fileID: 1349783943387753486, guid: 097907f7a3269b84e9206da6ab6fa86a, type: 3}
-  finding: 0
-  success: 0
+  statDisplay: {fileID: 0}
   unitType: {fileID: 11400000, guid: a7da0412ca30d9340a4f62136367fdd8, type: 2}
   baseStats:
     mineral: 0
@@ -266,6 +263,32 @@ MonoBehaviour:
     ground_type: 0
     air_type: 0
     unit_size: 0
+  rangeColliders: []
+  aggerTarget: {fileID: 0}
+  distance: 0
+  attack: 0
+  airattack: 0
+  atkspeed: 0
+  speed: 0
+  armor: 0
+  atkRange: 0
+  atkUpPlus: 0
+  DropCount: 0
+  eyesight: 0
+--- !u!114 &8652425162828939172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872732092658615484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6436efb2b8630804fab2d26e867c94ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteracting: 0
+  highlight: {fileID: 0}
 --- !u!1001 &2587563773021049375
 PrefabInstance:
   m_ObjectHideFlags: 0

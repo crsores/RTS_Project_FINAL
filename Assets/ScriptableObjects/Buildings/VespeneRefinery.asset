@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 2
   name: VespeneRefinery
   buildingPrefab: {fileID: 1158744962111238499, guid: a334abc59724dcb438c9e06bc90dee22, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: a1aeebb92f34dc44981ea0c78f67c783, type: 3}
   spawnTime: 40
   baseStats:
     mineral: 100

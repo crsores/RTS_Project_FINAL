@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 16
   name: CoverOPS
   buildingPrefab: {fileID: 8903242726772855329, guid: e3493f4aa17baa945819a361686e571a, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: 2d6b53541d970384a91f0f05354209b1, type: 3}
   spawnTime: 40
   baseStats:
     mineral: 50

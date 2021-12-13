@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 5
   name: Academy
   buildingPrefab: {fileID: 530772399222524394, guid: 22e71bde5db421a46ac941ed518873d2, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: 155dd97006b5be546a1f517b1e220b9c, type: 3}
   spawnTime: 80
   baseStats:
     mineral: 150

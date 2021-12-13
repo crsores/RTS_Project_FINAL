@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 14
   name: ScanAddOn
   buildingPrefab: {fileID: 8102080419826144837, guid: 35a534dfde8168b4c91aa4766b1be99d, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: 4e33982fd353c7a47a2a8bc18f28f59b, type: 3}
   spawnTime: 40
   baseStats:
     mineral: 50

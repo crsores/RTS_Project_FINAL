@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 17
   name: Starportaddon
   buildingPrefab: {fileID: 6655700436900927687, guid: a861f55cbbbfc8d49b368a446d944507, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: 18ebdf8599c59e34ea6c6f745ed38f8f, type: 3}
   spawnTime: 40
   baseStats:
     mineral: 50

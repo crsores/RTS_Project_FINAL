@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 12
   name: ScinceFacility
   buildingPrefab: {fileID: 5349330984300266217, guid: 7b8dd23e76d19dd49b840513f6ec176a, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: 284fae4ade47670498f632d59ec8c118, type: 3}
   spawnTime: 60
   baseStats:
     mineral: 100

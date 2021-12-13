@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   name: CommandCenter
   buildingPrefab: {fileID: 8723536339271152076, guid: 0124dc1f20e04d543a9d70200230102a, type: 3}
-  icon: {fileID: 5392786933212251445, guid: e9a1dc64b970cab4195e6934e4f7efba, type: 3}
+  icon: {fileID: 4285337957525539783, guid: c91eb4126f62a704896c9194f941b1bb, type: 3}
   spawnTime: 120
   baseStats:
     mineral: 400

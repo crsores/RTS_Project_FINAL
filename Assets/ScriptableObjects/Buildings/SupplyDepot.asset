@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 1
   name: SupplyDepot
   buildingPrefab: {fileID: 677970269807502833, guid: 647a99a9acf74764a8c87f4e83aeb9e0, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: b365789bac3062a46872e8b8d23e551a, type: 3}
   spawnTime: 40
   baseStats:
     mineral: 100

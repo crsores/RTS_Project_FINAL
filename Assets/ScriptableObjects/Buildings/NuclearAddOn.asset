@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 13
   name: NuclearAddOn
   buildingPrefab: {fileID: 8481234947083091882, guid: 319b430fa184c294ea96f0157f1a9715, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: 7dc7f29a8715c72479f12155b316b78f, type: 3}
   spawnTime: 80
   baseStats:
     mineral: 100

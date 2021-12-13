@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 8
   name: Factory
   buildingPrefab: {fileID: 377531821038035710, guid: 2a8117c8f70da7440bf3078cf1aa9d73, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 4285337957525539783, guid: d8385696b8e85e845b5739b181581e3c, type: 3}
   spawnTime: 80
   baseStats:
     mineral: 200

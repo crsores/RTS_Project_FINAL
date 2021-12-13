@@ -148,7 +148,6 @@ MonoBehaviour:
   atkUpPlus: 0
   DropCount: 0
   eyesight: 0
-  air: 0
 --- !u!114 &5081091629191296113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +184,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8969318230965878102}
-  - component: {fileID: -879487035991479574}
+  - component: {fileID: -1003960222049731252}
+  - component: {fileID: 2351879969786979478}
   m_Layer: 6
   m_Name: P_Wraith
   m_TagString: Untagged
@@ -210,7 +210,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-879487035991479574
+--- !u!114 &-1003960222049731252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,14 +219,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7257235514898186073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3adce832f6d314bbac8ddce6b0455c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f8e94ee18cdb1646987a07dcb18191b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path_: {fileID: 0}
-  TargetPos: {fileID: 1349783943387753486, guid: 097907f7a3269b84e9206da6ab6fa86a, type: 3}
-  finding: 0
-  success: 0
-  unitType: {fileID: 11400000, guid: 9636358a9dca0e741b8b0235aa48b610, type: 2}
+  statDisplay: {fileID: 0}
+  unitType: {fileID: 11400000, guid: 9bf0a7f72abb5754092ea3c89bd953d3, type: 2}
   baseStats:
     mineral: 0
     gas: 0
@@ -254,6 +251,32 @@ MonoBehaviour:
     ground_type: 0
     air_type: 0
     unit_size: 0
+  rangeColliders: []
+  aggerTarget: {fileID: 0}
+  distance: 0
+  attack: 0
+  airattack: 0
+  atkspeed: 0
+  speed: 0
+  armor: 0
+  atkRange: 0
+  atkUpPlus: 0
+  DropCount: 0
+  eyesight: 0
+--- !u!114 &2351879969786979478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257235514898186073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6436efb2b8630804fab2d26e867c94ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteracting: 0
+  highlight: {fileID: 0}
 --- !u!1001 &4236197957921670785
 PrefabInstance:
   m_ObjectHideFlags: 0
