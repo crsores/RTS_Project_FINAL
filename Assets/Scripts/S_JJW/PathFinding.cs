@@ -37,20 +37,68 @@ public class PathFinding : MonoBehaviour
     Vector3 thisPos = Vector3.zero;
 
 
+    Interactables.IUnit iUnit = null;
+
+    public Units.BasicUnit unitType;
+
+    public Units.UnitStatType.Base baseStats;
+
+    private bool isMove = false;
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();
+        iUnit = GetComponentInChildren<Interactables.IUnit>();
+        
     }
 
     private void Start()
     {
         cellsize = Grid.gridinstance.Getcellsize;   //Grid에서 설정한 cellsize저장
+
+        baseStats = unitType.baseStats;
     }
 
+        Vector3 Movedis = Vector3.zero;
+    Vector3 LookDir = Vector3.zero;
     private void Update()
     {
-        SetTarget();
+        Debug.Log(iUnit.isSelected());
+       
+
+
+        if (iUnit.isSelected())
+        {
+            if (!baseStats.air)
+            {
+                Debug.Log("지상유닛");
+                SetTarget();
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    isMove = true;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        TargetPos_ = hit.point;
+                        this.transform.LookAt(Movedis);
+                    }
+
+                     Movedis = new Vector3(TargetPos_.x, 0, TargetPos_.z);
+                    LookDir = new Vector3(TargetPos_.x, this.transform.position.y, TargetPos_.z);
+                    this.transform.LookAt(LookDir);
+
+                }
+            }
+        }
+                    FloyingMoveUnit(Movedis);
+        
+       
+      
 
         //thisPos = this.transform.position;
 
@@ -426,5 +474,63 @@ public class PathFinding : MonoBehaviour
 
     }
 
-  
+    private void MoveFlyingUnit()
+    {
+    
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            Vector3 TargetPos = Vector3.zero;
+            if (Physics.Raycast(ray, out hit,Mathf.Infinity))
+            {
+                TargetPos = hit.point;
+            }
+
+
+
+            float AxisX = TargetPos.x - transform.position.x;
+            float AxisY = TargetPos.z - transform.position.z;
+            Vector3 Movedis = new Vector3(AxisX, 0, AxisY);
+
+            float SqrLen = Movedis.sqrMagnitude;
+
+            transform.position += Movedis.normalized * speed * Time.deltaTime;
+
+
+            if (SqrLen < 1.0f)
+            {
+
+            }
+        
+
+
+
+
+    }
+
+
+            Vector3 TargetPos_ = Vector3.zero;
+    public void FloyingMoveUnit(Vector3 Dir_)
+    {
+        
+            
+
+            Vector3 CurrentPos = new Vector3(this.transform.position.x, 0, this.transform.position.z);
+
+            if (isMove)
+            {
+                var dir = Dir_ - CurrentPos;
+            Debug.Log(Dir_ + " : 타겟위치");
+            Debug.Log(CurrentPos + " : 현재위치");
+            transform.position += dir.normalized * Time.deltaTime * baseStats.speed;
+            }
+            if (Vector3.Distance(CurrentPos, Dir_) <= 0.1f)
+            {
+                isMove = false;
+
+            }
+        
+    }
+
+
 }

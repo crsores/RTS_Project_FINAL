@@ -22,14 +22,14 @@ public class UnitObsTest : MonoBehaviour
 
     void Update()
     {
-       
+        UnitObstacle();
     }
 
-    IEnumerator SetOld()
-    {
-        yield return null;
-        OldObs = Grid.gridinstance.NodePoint(this.transform.position, 1);
-    }
+    //IEnumerator SetOld()
+    //{
+    //    yield return null;
+    //    OldObs = Grid.gridinstance.NodePoint(this.transform.position, 1);
+    //}
 
         List<Node> falseNode = new List<Node>();
     public void UnitObstacle()

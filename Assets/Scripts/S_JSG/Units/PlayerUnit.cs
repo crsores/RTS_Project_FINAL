@@ -59,7 +59,7 @@ namespace Units.Player
        
         public float eyesight;
 
-
+        public bool air;
 
 
         private bool isMove;
@@ -73,6 +73,8 @@ namespace Units.Player
         void Start()
         {
             baseStats = unitType.baseStats;
+
+            air = baseStats.air;
 
 
             attack = baseStats.attack;

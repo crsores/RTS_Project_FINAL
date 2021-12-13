@@ -129,8 +129,8 @@ namespace InputManager
                                 PlayerUnit pU = unit.gameObject.GetComponent<PlayerUnit>();
                                 Vector3 HitPos = hit.point;
                                 Debug.Log("22");
-                                HitPos.y += 10f;
-                               pU.SetDestinatin(HitPos); // 목표지정 << 바꾸면됨
+                               // HitPos.y += 10f;
+                              // pU.SetDestinatin(HitPos); // 목표지정 << 바꾸면됨
                                 //selectedUnits
                               //  transform.LookAt(HitPos);
 
